@@ -19,7 +19,7 @@ router.get('/init', async (req, res) => {
         return
     })
     // 网站信息
-    let webside = await db.select('views, tell, create_time, sentences, skill_tags, article_tags').from('webside').queryRow().catch(err => {
+    let webside = await db.select('views, tell, create_time, sentences, skill_tags, article_tags, notes_class').from('webside').queryRow().catch(err => {
         console.log(err)
         res.send({code: 0, msg: '系统繁忙'})
         return
@@ -29,6 +29,13 @@ router.get('/init', async (req, res) => {
     let tags_count = {}
     for ( let prop in JSON.parse(webside.article_tags) ) {
         tags_count[JSON.parse(webside.article_tags)[prop]] = await db.select('count(*)').from('article').where('article_tags', JSON.parse(webside.article_tags)[prop], 'like').queryValue()
+    }
+
+    // 笔记分类
+    console.log(JSON.parse(webside.notes_class))
+    let notes_class = []
+    for ( let prop in JSON.parse(webside.notes_class) ) {
+        notes_class.push(JSON.parse(webside.notes_class)[prop])
     }
 
     // 返回的数据
@@ -41,7 +48,8 @@ router.get('/init', async (req, res) => {
         sentences: webside.sentences,
         skill_tags: webside.skill_tags,
         article_tags: webside.article_tags,
-        tags_count
+        tags_count,
+        notes_class
     }
     res.send({code: 200, data: webInit})
 

@@ -138,7 +138,7 @@ router.get('/user-like', async (req, res) => {
 })
 
 // 添加文章
-router.post('/add', token_verification, checkAdmin, async (req, res) => {
+router.post('/add', checkAdmin, async (req, res) => {
     const { title, article_img, article_tags, skill_tag, description, content, html_content } = req.body
     if ( !title || !article_img || !article_tags || !skill_tag || !description || !content || !html_content ) { return res.send({ code: '000020', msg: '缺少参数'}) }
     let start_time = Timestamp_To_YYYY_MM_DD_HH_MM_SS( new Date() )
@@ -172,7 +172,7 @@ router.get('/del', token_verification, checkAdmin, (req, res) => {
     res.send({code: 200})
 })
 
-router.post('/update', token_verification, checkAdmin, async (req, res) => {
+router.post('/update', checkAdmin, async (req, res) => {
     const { id, title, article_img, article_tags, skill_tag, content, html_content, description } = req.body
     if ( !id || !title || !article_tags || !skill_tag || !description || !content || !html_content ) { return res.send({ code: '000020', msg: '缺少参数'}) }
     let update_time = Timestamp_To_YYYY_MM_DD_HH_MM_SS( new Date() )

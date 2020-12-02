@@ -83,7 +83,7 @@ router.get('/tags', checkAdmin, async (req, res) => {
   if ( !type || !tags ) {
     res.send({code: 0, msg: '缺少参数'})
   } else {
-    let tag = type == 'skill' ? 'skill_tags' : type == 'article' ? 'article_tags' : 'sentences'
+    let tag = type == 'skill' ? 'skill_tags' : type == 'article' ? 'article_tags' : type == 'notes' ? 'notes_class' : 'sentences'
     await db.update('webside').column(tag, tags).where('id', 1).execute().catch(err => {
       console.log(err)
       res.send({code: 0, msg: '系统繁忙'})

@@ -25,12 +25,13 @@ router.post('/del', checkAdmin, async (req, res) => {
 })
 
 router.post('/add', checkAdmin, async (req, res) => {
-    const { title, content, html_content } = req.body
-    if ( !title || !content || !html_content ) { return res.send({code: 0, msg: '缺少参数'}) } 
+    const { title, content, html_content, notes_class } = req.body
+    if ( !title || !content || !html_content || !notes_class ) { return res.send({code: 0, msg: '缺少参数'}) } 
     let start_time = Timestamp_To_YYYY_MM_DD_HH_MM_SS( new Date() )
     await db.insert('notes')
     .column('title', title)
     .column('content', content)
+    .column('notes_class', notes_class)
     .column('html_content', html_content)
     .column('publish_time', start_time)
     .column('update_time', start_time)
@@ -43,12 +44,13 @@ router.post('/add', checkAdmin, async (req, res) => {
 })
 
 router.post('/update', checkAdmin, async (req, res) => {
-    const { id, title, content, html_content } = req.body
-    if ( !id || !title || !content || !html_content ) { return res.send({code: 0, msg: '缺少参数'}) } 
+    const { id, title, content, html_content, notes_class } = req.body
+    if ( !id || !title || !content || !html_content || !notes_class ) { return res.send({code: 0, msg: '缺少参数'}) } 
     let start_time = Timestamp_To_YYYY_MM_DD_HH_MM_SS( new Date() )
     await db.update('notes')
     .column('title', title)
     .column('content', content)
+    .column('notes_class', notes_class)
     .column('html_content', html_content)
     .column('update_time', start_time)
     .where('id', id)
