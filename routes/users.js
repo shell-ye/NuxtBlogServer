@@ -21,6 +21,13 @@ let upload = multer({
     storage
 })
 
+// token
+router.get('/token', (req, res) => {
+    let result = createToken({
+        email: req.query.email
+    })
+})
+
 // 登录
 router.post('/login', async (req, res) => {
     const { email, password } = req.body
@@ -45,13 +52,17 @@ router.post('/login', async (req, res) => {
 
 // 用户信息
 router.get('/info', async (req, res) => {
-    let email = await checkToken( req.query.token )
-    let data = await db.select('*').from('user').where('email', email.email).queryRow().catch(err => {
-        console.log( err )
-        res.send({code: 0, msg: '系统繁忙'})
-        return
-    })    
-    res.send({code: 200, data})
+    let email = await checkToken( req.query.token ).then(async response => {
+        let data = await db.select('*').from('user').where('email', response.email).queryRow().catch(err => {
+            console.log( err )
+            res.send({code: 0, msg: '系统繁忙'})
+            return
+        })    
+        res.send({code: 200, data})
+    }).catch(err => {
+        console.log(err)
+        res.send({code: 200, data: {}})
+    })
 })
 
 // 注册发送邮箱验证码
