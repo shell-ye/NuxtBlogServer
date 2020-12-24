@@ -140,18 +140,22 @@ router.post('/upload/heads', upload.single('head_img'), async (req, res) => {
 router.post('/update', token_verification, async (req, res) => {
     const { user_id, name, saying, qq, weibo, git, bilibili } = req.body
     // 修改用户信息
-    await db.update('user').column('name', name).column('saying', saying).column('qq', qq).column('git', git).column('weibo', weibo).column('bilibili', bilibili).where('id', user_id).execute().catch(err => {
-        console.log( err )
-        res.send({code: 0, msg: '系统繁忙'})
-        return
-    })
-    // 发送用户信息
-    let data = await db.select('*').from('user').where('id', user_id).queryRow().catch(err => {
-        console.log( err )
-        res.send({code: 0, msg: '系统繁忙'})
-        return
-    })
-    res.send({code: 200, data})
+    if ( name.length > 7 ) {
+        res.send({code: -1, msg: '昵称最长为七位'})
+    } else {
+        await db.update('user').column('name', name).column('saying', saying).column('qq', qq).column('git', git).column('weibo', weibo).column('bilibili', bilibili).where('id', user_id).execute().catch(err => {
+            console.log( err )
+            res.send({code: 0, msg: '系统繁忙'})
+            return
+        })
+        // 发送用户信息
+        let data = await db.select('*').from('user').where('id', user_id).queryRow().catch(err => {
+            console.log( err )
+            res.send({code: 0, msg: '系统繁忙'})
+            return
+        })
+        res.send({code: 200, data})
+    }
 })
 
 module.exports = router;
