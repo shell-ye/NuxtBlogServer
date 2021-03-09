@@ -1,13 +1,17 @@
 var express = require('express');
+const { select } = require('../mysql');
 var router = express.Router();
 const db = require('../mysql')
+const { checkToken } = require('./../utils/jwt')
 
 router.post('/submit', async (req, res) => {
     let { type, user_id, username, identification, identification_color, message } = req.body
     if ( !type || !user_id || !username || !identification || !identification_color || !message ) {
         res.send({code: 0, msg: '缺少参数'})
-    } else if ( username.length > 7 || identification > 7 ) {
-        res.send({code: 0, msg: '昵称或标识最长为七位'})
+    } else if ( username.length > 7) {
+        res.send({code: 0, msg: '昵称最长为七位'})
+    } else if ( identification > 5 ) {
+        res.send({code: 0, msg: '头衔最长为五位'})
     } else {
         let head_img = await db.select('head_img').from('user').where('id', user_id).queryValue().catch(err => {
             console.log(err)
@@ -60,18 +64,26 @@ router.post('/submit', async (req, res) => {
 })
 
 router.get('/list', async (req, res) => {
-    let { type, page } = req.query
-    if ( !type ) {
+    // type 1-网站留言  2-网站留言+回复 3-用户网站留言  4-用户回复的  5-回复用户的
+    let { type, page, pageSize } = req.query
+    if ( !type || !page || !pageSize ) {
         res.send({code: 0, msg: '缺少餐参数'})
     }
-    // 网站留言（基础）
-    let data = await db.select('*').from('message').orderby('time desc').queryListWithPaging(page || 1, 4).catch(err => {
-        console.log(err)
-        res.send({code: 0, msg: '系统繁忙'})
-        return
-    })
-    console.log(data)
-    if ( type == 2 ) {
+    if ( type == 1 ) {
+        // 网站留言（基础）
+        let data = await db.select('*').from('message').orderby('time desc').queryListWithPaging(page || 1, pageSize).catch(err => {
+            console.log(err)
+            res.send({code: 0, msg: '系统繁忙'})
+            return
+        })
+        res.send({code: 200, data})
+    } else if ( type == 2 ) {
+        // 网站留言（基础）
+        let data = await db.select('*').from('message').orderby('time desc').queryListWithPaging(page || 1, pageSize).catch(err => {
+            console.log(err)
+            res.send({code: 0, msg: '系统繁忙'})
+            return
+        })
         // 含有给留言回复留言
         let conditions = []
         data.rows.forEach(item => {
@@ -90,8 +102,62 @@ router.get('/list', async (req, res) => {
                 }
             })
         })
+        res.send({code: 200, data})
+    } else if ( type == 3 ) {
+        let { token } = req.query
+        checkToken(token).then(async response => {
+            let email = response.email
+            let id = await db.select('id').from('user').where('email', email).queryValue().catch(err => {
+                console.log(err)
+                res.send({code: 0, msg: '系统繁忙'})
+                return
+            })
+            let data = await db.select('*').from('message').orderby('time desc').where('user_id', id).queryListWithPaging(page || 1, pageSize).catch(err => {
+                console.log(err)
+                res.send({code: 0, msg: '系统繁忙'})
+                return
+            })
+            res.send({code: 200, data})
+        }).catch(err => {
+            res.send({ code: '000013', msg: '无效的 token'})
+        })
+    } else if ( type == 4 ) {
+        let { token } = req.query
+        checkToken(token).then(async response => {
+            let email = response.email
+            let id = await db.select('id').from('user').where('email', email).queryValue().catch(err => {
+                console.log(err)
+                res.send({code: 0, msg: '系统繁忙'})
+                return
+            })
+            let data = await db.select('*').from('message_reply').orderby('time desc').where('user_id', id).queryListWithPaging(page || 1, pageSize).catch(err => {
+                console.log(err)
+                res.send({code: 0, msg: '系统繁忙'})
+                return
+            })
+            res.send({code: 200, data})
+        }).catch(err => {
+            res.send({ code: '000013', msg: '无效的 token'})
+        })
+    } else if ( type == 5 ) {
+        let { token } = req.query
+        checkToken(token).then(async response => {
+            let email = response.email
+            let id = await db.select('id').from('user').where('email', email).queryValue().catch(err => {
+                console.log(err)
+                res.send({code: 0, msg: '系统繁忙'})
+                return
+            })
+            let data = await db.select('*').from('message_reply').orderby('time desc').where('to_user_id', id).queryListWithPaging(page || 1, pageSize).catch(err => {
+                console.log(err)
+                res.send({code: 0, msg: '系统繁忙'})
+                return
+            })
+            res.send({code: 200, data})
+        }).catch(err => {
+            res.send({ code: '000013', msg: '无效的 token'})
+        })
     }
-    res.send({code: 200, data})
 })
 
 module.exports = router;

@@ -2,11 +2,16 @@ const { checkToken } = require('./../utils/jwt')
 const db = require('../mysql')
 
 const token_verification = ( req, res, next ) => {
-    checkToken(req.session._ctx.cookies.token).then(() => {
+    let token = req.method == 'GET' ? req.query.token : req.body.token
+    checkToken(token).then((response) => {
+        if ( req.method == 'POST' ) {
+            req.body['email'] = response.email
+        } else {
+            req.query['email'] = response.email
+        }
         next()
     }).catch(err => {
-        console.log('server-token:',req.session)
-        console.log('server-token:',req.session.cookies.token)
+        // console.log('server-token:',req.session._ctx, err)
         req.session = null
         res.send({ code: '000013', msg: '无效的 token'})
     })

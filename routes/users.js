@@ -158,4 +158,63 @@ router.post('/update', token_verification, async (req, res) => {
     }
 })
 
+// 修改留言
+router.post('/change-message', token_verification, async (req, res) => {
+    // type 1-修改对网站留言    2-修改我回复的
+    let { type, message_id, message } = req.body
+    if ( !type || !message || !message_id ) {
+        res.send({code: -1, msg: '缺少参数'})
+    } else {
+        let id = await db.select('*').from('user').where('email', req.body.email).queryValue().catch(err => {
+            console.log( err )
+            res.send({code: 0, msg: '系统繁忙'})
+            return
+        })
+        if ( type == 1 ) {
+            db.update('message').column('message', message).where('user_id', id).where('id', message_id).execute().then(() => {
+                res.send({code: 200, msg: '修改成功'})
+            }).catch(err => {
+                console.log( err )
+                res.send({code: 0, msg: '系统繁忙'})
+                return
+            })
+        } else if ( type == 2 ) {
+            db.update('message_reply').column('message', message).where('user_id', id).where('id', message_id).execute().then(() => {
+                res.send({code: 200, msg: '修改成功'})
+            }).catch(err => {
+                console.log( err )
+                res.send({code: 0, msg: '系统繁忙'})
+                return
+            })
+        }
+    }
+})
+
+// 删除留言
+router.post('/delete-message', token_verification, async (req, res) => {
+    // type 1-删除对网站留言    2-删除我回复的
+    let { type, message_id } = req.body
+    if ( !type || !message_id ) {
+        res.send({code: -1, msg: '缺少参数'})
+    } else {
+        if ( type == 1 ) {
+            db.delete('message').where('id', message_id).execute().then(() => {
+                res.send({code: 200, msg: '删除成功'})
+            }).catch(err => {
+                console.log( err )
+                res.send({code: 0, msg: '系统繁忙'})
+                return
+            })
+        } else if ( type == 2 ) {
+            db.delete('message_reply').where('id', message_id).execute().then(() => {
+                res.send({code: 200, msg: '删除成功'})
+            }).catch(err => {
+                console.log( err )
+                res.send({code: 0, msg: '系统繁忙'})
+                return
+            })
+        }
+    }
+})
+
 module.exports = router;
