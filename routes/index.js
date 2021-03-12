@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const db = require('../mysql');
-const { token_verification, checkAdmin } = require("./../middleware/index")
-const multer  = require('multer');
+const { dateFormat } = require('../utils/time')
 
 // 首页信息
 router.get('/init', async (req, res) => {
@@ -68,6 +67,20 @@ router.get('/friend/links', async (req, res) => {
         return
     })
     res.send({code: 200, data})
+})
+
+// 访问日志
+router.get('/accesslog', async (req, res) => {
+    let { ip, address, isp } = req.query
+    if ( !ip || !address || !isp ) {
+        res.send({code: 0, msg: '缺少参数'})
+    } else {
+        let log = await db.select('ip, time').from('access_log').where('ip', ip).where('time', new Date(dateFormat(new Date(), 'yyyy-MM-dd')), 'gt').where('time', new Date(dateFormat(new Date(), 'yyyy-MM-dd') + ' 23:59:59'), 'lt').queryRow()
+        if ( !log ) {
+            db.insert('access_log').column('ip', ip).column('address', address).column('isp', isp).execute()
+        }
+        res.send({code: 200})
+    }
 })
 
 module.exports = router;
