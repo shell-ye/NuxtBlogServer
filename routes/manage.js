@@ -3,7 +3,8 @@ var router = express.Router();
 const db = require('../mysql');
 const { checkAdmin } = require("./../middleware/index")
 const multer  = require('multer');
-const { dateFormat } = require('../utils/time')
+const { dateFormat } = require('../utils/time');
+const e = require('express');
 
 let storage = multer.diskStorage({
   destination (req, file, cb) {
@@ -96,19 +97,30 @@ router.get('/tags', checkAdmin, async (req, res) => {
 
 // 获取访问量
 router.get('/accesslog', checkAdmin, async (req, res) => {
-  let startTimeStamp = new Date(dateFormat(new Date(), 'yyyy-MM-dd'))
-  let endTimeStamp = new Date(dateFormat(new Date(), 'yyyy-MM-dd') + ' 23:59:59')
-  let toDay = dateFormat(new Date(), 'dd')
-  let dayTimeStamp = 1000 * 60 * 60 * 24
-  console.log(Date.parse(dateFormat(new Date(), 'yyyy-MM-dd') + ' 23:59:59') - dayTimeStamp * 30)
-
+  
   // select DATE_FORMAT(c_time,'%Y-%m-%d') as ymd,count(c_time) as num from access_log group by ymd
   let data = await db.select("DATE_FORMAT(time, '%Y-%m-%d') as ymd, count(time) as num").from('access_log').groupby('ymd').queryList().catch(err => {
     console.log(err)
     res.send({code: 0, msg: '系统繁忙'})
     return
   })
-  res.send({code: 200, data})
+
+  let dayTimeStamp = 1000 * 60 * 60 * 24
+  let dateObj = {}
+  for ( let i = 0; i < 30; i++ ) {
+    data.forEach(item => {
+      if ( item.ymd == dateFormat(Date.parse(new Date()) - i * dayTimeStamp, 'yyyy-MM-dd') ) {
+        dateObj[item.ymd] = item.num
+      }
+    })
+  }
+  for ( let i = 0; i < 30; i++ ) {
+    if ( !dateObj[dateFormat(Date.parse(new Date()) - i * dayTimeStamp, 'yyyy-MM-dd')] ) {
+      dateObj[dateFormat(Date.parse(new Date()) - i * dayTimeStamp, 'yyyy-MM-dd')] = 0
+    }
+  }
+
+  res.send({code: 200, data: dateObj})
 })
 
 module.exports = router;
