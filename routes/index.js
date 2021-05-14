@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const db = require('../mysql');
 const { dateFormat } = require('../utils/time')
+const fs = require('fs')
 
 // 首页信息
 router.get('/init', async (req, res) => {
@@ -81,6 +82,18 @@ router.get('/accesslog', async (req, res) => {
         }
         res.send({code: 200})
     }
+})
+
+router.post('/img', (req, res) => {
+    console.log(req.body)
+    fs.writeFile('test.jpg', req.body.head_img, blob, (err, data) => {
+        if ( err ) {
+            console.log('Error', err)
+        } else {
+            console.log('成功')
+        }
+    })
+    res.send('ok')
 })
 
 module.exports = router;
