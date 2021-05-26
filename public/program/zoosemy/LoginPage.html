@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拟物登录界面</title>
+    <link rel="stylesheet" href="./../../iconfont/iconfont.css">
+    <style>        
+        body {
+            background: #EBECF0;
+        }
+
+        button, input {
+            border: 0;
+            outline: 0;
+            font-size: 16px;
+            border-radius: 320px;
+            padding: 16px;
+            background-color: #EBECF0;
+            text-shadow: 1px 1px 0 #fff;
+        }
+
+        main {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main article {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        main article h1 {
+            color: #BABECC;
+            text-shadow: 1px 1px 1px #fff;
+            font-size: 32px;
+            margin-bottom: 80px;
+        }
+
+        main article input {
+            margin-bottom: 20px;
+            box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #fff;
+            box-sizing: border-box;
+            transition: all 0.2s ease-in-out;
+            appearance: none;
+            -webkit-appearance: none;
+            width: 320px;
+        }
+
+        main article input:focus {
+            box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
+        }
+
+        main article button {
+            box-shadow: -5px -5px 20px #fff, 5px 5px 20px #babecc;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            font-weight: 600;
+            height: 50px;
+            width: 320px;
+            color: red;
+            margin-bottom: 40px;
+        }
+
+        main article > button i {
+            margin-right: 4px;
+        }
+
+        main article button:hover {
+            box-shadow: -2px -2px 5px #fff, 2px 2px 5px #babecc;
+        }
+
+        main article button:active {
+            box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
+        }
+
+        main article div.btn-list {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 320px;
+        }
+
+        main article div.btn-list button {
+            width: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            margin-bottom: 0;
+        }
+
+        main article div.btn-list button i {
+            font-size: 24px;
+            color: #61677C;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <article class="content">
+            <h1>Sign in</h1>
+            <input type="text" placeholder="E-mail">
+            <input type="text" placeholder="Password">
+            <button><i class="iconfont iconsuo"></i>Login in</button>
+            <div class="btn-list">
+                <button><i class="iconfont iconfanhui"></i></button>
+                <button><i class="iconfont iconqq"></i></button>
+                <button><i class="iconfont iconweixin"></i></button>
+                <button><i class="iconfont iconlogo_github"></i></button>
+            </div>
+        </article>
+    </main>
+</body>
+</html>

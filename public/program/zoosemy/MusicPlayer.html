@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拟物登录界面</title>
+    <link rel="stylesheet" href="./../../iconfont/iconfont.css">
+    <style>        
+        body {
+            background: #EBECF0;
+            color: #222e51;
+        }
+
+        main {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main article {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 320px;
+            box-sizing: border-box;
+            padding: 40px 24px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: -2px -2px 4px 0px #ffffff, 50px 50px 50px 0px rgb(0 0 0 / 25%);
+        }
+
+        main article > * {
+            width: 100%;
+        }
+
+        main article div.head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        main article div.head button {
+            width: 32px;
+            height: 32px;
+            background-color: #f1f8fd;
+            padding: 8px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            color: #222e51;
+            box-shadow: 6px 6px 6px rgb(0 0 0 / 5%), -6px -6px 6px rgb(255 255 255 / 60%), inset 2px 2px 5px rgb(0 0 0 / 3%), inset -2px -2px 5px rgb(255 255 255 / 40%);
+            transition: all 0.3s;
+        }
+
+        main article div.head button:hover {
+            box-shadow: 6px 6px 6px rgb(0 0 0 / 5%), -6px -6px 6px rgb(255 255 255 / 60%), inset 3px 3px 3px rgb(0 0 0 / 3%), inset -3px -3px 3px rgb(255 255 255 / 40%);
+        }
+
+        main article div.head button:active {
+            box-shadow: 6px 6px 6px rgb(0 0 0 / 5%), -6px -6px 6px rgb(255 255 255 / 60%), inset 8px 8px 8px rgb(0 0 0 / 5%), inset -8px -8px 8px rgb(255 255 255 / 60%);
+        }
+
+        main article div.img {
+            position: relative;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            margin: 32px 0 40px 0;
+            overflow: hidden;
+            border: 3px solid #f1f8fd;
+            box-shadow: 20px 20px 20px rgb(0 0 0 / 7%), -20px -20px 20px rgb(255 255 255 / 70%), 6px 6px 6px rgb(0 0 0 / 9%), -6px -6px 6px rgb(255 255 255 / 90%);
+        }
+
+        main article div.img::after {
+            content: '';
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background-color: #f1f8fd;
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -27.5px 0 0 -27.5px;
+            box-shadow: inset 5px 5px 5px rgb(0 0 0 / 7%), inset -5px -5px 5px rgb(255 255 255 / 70%);
+        }
+
+        main article div.img img {
+            width: 240px;
+            height: 240px;
+        }
+
+        main article p.music-name {
+            margin: 0 0 16px 0;
+            line-height: 24px;
+            font-size: 24px;
+            color: #222e51;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        main article p.music-singer {
+            margin: 0;
+            line-height: 16px;
+            font-size: 16px;
+            font-weight: normal;
+            color: #8f95a4;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        main article div.time {
+            position: relative;
+            width: 100%;
+            height: 16px;
+            border-radius: 8px;
+            box-shadow: 9px 9px 9px rgb(0 0 0 / 5%), -9px -9px 9px rgb(255 255 255 / 50%), inset 4px 4px 4px rgb(0 0 0 / 5%), inset -4px -4px 4px rgb(255 255 255 / 50%);
+            margin-bottom: 56px;
+        }
+
+        main article div.bar {
+            width: 80%;
+            height: 12px;
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            border-radius: 6px;
+            background-color: #fed0b3;
+            box-shadow: 2px 2px 2px rgb(0 0 0 / 5%), -2px -2px 2px rgb(255 255 255 / 50%), inset 3px 3px 3px rgb(255 255 255 / 50%), inset -3px -3px 3px rgb(0 0 0 / 5%);
+        }
+
+        main article div.btn-list {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        main article div.btn-list button {
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        main article div.btn-list button i {
+            font-size: 24px;
+            position: relative;
+        }
+
+        main article div.btn-list button:nth-child(2) {
+            cursor: pointer;
+            position: relative;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            padding: 26px;
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            display: block;
+            transition: all 0.3s;
+            box-shadow: 9px 9px 9px rgb(0 0 0 / 6%), -9px -9px 9px rgb(255 255 255 / 60%), inset 5px 5px 5px rgb(0 0 0 / 7%), inset -5px -5px 5px rgb(255 255 255 / 70%);
+        }
+
+        main article div.btn-list button:nth-child(2)::before {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #fed0b3;
+            top: 50%;
+            left: 50%;
+            margin: -35px 0 0 -35px;
+            box-shadow: inset 3px 3px 3px rgb(255 255 255 / 50%), inset -3px -3px 3px rgb(0 0 0 / 5%);
+            transition: .2s;
+        }
+
+        main article div.btn-list button:nth-child(2):hover::before {
+            box-shadow: inset 3px 3px 3px rgb(255 255 255 / 35%), inset -3px -3px 3px rgb(0 0 0 / 4%);
+        }
+
+        main article div.btn-list button:nth-child(2):active::before {
+            box-shadow: inset 3px 3px 3px rgb(0 0 0 / 5%), inset -3px -3px 3px rgb(255 255 255 / 50%);
+        }
+
+        main article div.btn-list button:nth-child(2) i {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <article class="content">
+            <div class="head">
+                <button><i class="iconfont iconfanhui"></i></button>
+                <span>Music Player</span>
+                <button><i class="iconfont iconcaidan-"></i></button>
+            </div>
+            <div class="img">
+                <img src="./images/MusicPlayer.jpg" alt="">
+            </div>
+            <p class="music-name">化身孤岛的鲸</p>
+            <p class="music-singer">不才</p>
+            <div class="time">
+                <div class="bar"></div>
+            </div>
+            <div class="btn-list">
+                <button><i class="iconfont iconshangyishou1"></i></button>
+                <button><i class="iconfont iconbofangqi_bofang"></i></button>
+                <button><i class="iconfont iconxiayishou1"></i></button>
+            </div>
+        </article>
+    </main>
+</body>
+</html>

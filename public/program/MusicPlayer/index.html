@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <style>
+        @font-face {
+            font-family: PingFangSC;
+            src: url(./font/PingFang-Regular.ttf);
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .black:hover {
+            color: black;
+        }
+
+        * {
+            font-family: PingFangSC;
+            font-size: 16px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <video src="./video/house.mp4" autoplay loop muted></video>
+    <main id="player">
+        <!-- 头部 -->
+        <section class="head">
+            <div class="title">Music Player</div>
+            <div class="bar">
+                <div>
+                    <input type="text">
+                    <i class="iconfont icon-search"></i>
+                </div>
+                <div>
+                    <img src="./img/xiaye.jpg" alt="">
+                    <span class="username">夏叶</span>
+                    <i class="iconfont icon-zuixiaohua black"></i>
+                    <i class="iconfont icon-zuidahua black"></i>
+                    <i class="iconfont icon-guanbi black"></i>
+                </div>
+            </div>
+        </section>
+        <hr>
+
+        <!-- 主内容 -->
+        <article class="content">
+            <aside>
+                <p class="title">我的音乐</p>
+                <ul>
+                    <li class="black"><i class="iconfont icon-tinggeshiqu"></i>我的音乐</li>
+                    <li class="black"><i class="iconfont icon-cpxihuan"></i>我喜欢的</li>
+                    <li class="black"><i class="iconfont icon-xiazai1"></i>下载管理</li>
+                    <li class="black"><i class="iconfont icon-shoucangxing2"></i>我的收藏</li>
+                </ul>
+                <p class="title">创建的歌单</p>
+                <ul>
+                    <li class="black"><i class="iconfont icon-bofangduilie"></i>四季音色</li>
+                    <li class="black"><i class="iconfont icon-bofangduilie"></i>最美钢琴曲</li>
+                    <li class="black"><i class="iconfont icon-bofangduilie"></i>夏叶</li>
+                    <li class="black"><i class="iconfont icon-bofangduilie"></i>望</li>
+                    <li class="black select"><i class="iconfont icon-bofangduilie"></i>五位陈杂</li>
+                </ul>
+            </aside>
+            <section class="content">
+                <!-- 头部页面信息 -->
+                <div class="info">
+                    <img src="./img/cover.jpg" alt="">
+                    <div class="text">
+                        <div class="title">
+                            <span class="type">歌单</span>
+                            <span class="name">五位陈杂</span>
+                            <i class="iconfont icon-bianji"></i>
+                        </div>
+                        <div class="author">
+                            <img src="./img/xiaye.jpg" alt="">
+                            <span class="username">夏叶</span>
+                            <span class="time">2021-05-25创建</span>
+                        </div>
+                        <div class="operation">
+                            <p>
+                                <i class="iconfont icon-bofang"></i>
+                                <span>播放全部</span>
+                                <i class="iconfont icon-jiahao"></i>
+                            </p>
+                            <p>
+                                <i class="iconfont icon-tianjiashoucang_huaban1"></i>
+                                <span>收藏(33)</span>
+                            </p>
+                            <p>
+                                <i class="iconfont icon-fenxiang"></i>
+                                <span>分享(106)</span>
+                            </p>
+                            <p>
+                                <i class="iconfont icon-xiazai1"></i>
+                                <span>下载全部</span>
+                            </p>
+                        </div>
+                        <div class="count">
+                            <span>歌曲：13</span>
+                            <span>播放：215</span>
+                        </div>
+                        <div class="introduction">简介：各种歌曲应有尽有（红红火火恍恍惚惚）</div>
+                    </div>
+                </div>
+
+                <!-- 分类列表 -->
+                <div class="list-type">
+                    <p class="list">
+                        <span class="select">歌曲列表</span>
+                        <span>评论(0)</span>
+                        <span>收藏者(13)</span>
+                    </p>
+                    <p class="search">
+                        <input type="text">
+                        <i class="iconfont icon-search"></i>
+                    </p>
+                </div>
+
+                <!-- 信息列表 -->
+                <ul>
+                    <li>
+                        <p class="index">序号</p>
+                        <p class="operation">操作</p>
+                        <p class="name">歌名</p>
+                        <p class="singer">歌手</p>
+                        <p class="time">时长</p>
+                    </li>
+                    <li>
+                        <p class="index">01</p>
+                        <p class="operation">
+                            <i class="iconfont icon-cpxihuan"></i>
+                            <i class="iconfont icon-xiazai1"></i>
+                        </p>
+                        <p class="name">起风了</p>
+                        <p class="singer">买辣椒也用券</p>
+                        <p class="time">5:52</p>
+                    </li>
+                    <li>
+                        <p class="index">02</p>
+                        <p class="operation">
+                            <i class="iconfont icon-xihuan""></i>
+                            <i class="iconfont icon-xiazai1"></i>
+                        </p>
+                        <p class="name">冬眠</p>
+                        <p class="singer">司南</p>
+                        <p class="time">3:39</p>
+                    </li>
+                    <li>
+                        <p class="index">03</p>
+                        <p class="operation">
+                            <i class="iconfont icon-cpxihuan"></i>
+                            <i class="iconfont icon-xiazai1"></i>
+                        </p>
+                        <p class="name">参商(纯歌版)</p>
+                        <p class="singer">不才</p>
+                        <p class="time">4:50</p>
+                    </li>
+                    <li>
+                        <p class="index">04</p>
+                        <p class="operation">
+                            <i class="iconfont icon-cpxihuan"></i>
+                            <i class="iconfont icon-xiazai1"></i>
+                        </p>
+                        <p class="name">富士山下</p>
+                        <p class="singer">陈奕迅</p>
+                        <p class="time">4:19</p>
+                    </li>
+                    <li>
+                        <p class="index">05</p>
+                        <p class="operation">
+                            <i class="iconfont icon-xihuan"></i>
+                            <i class="iconfont icon-xiazai1"></i>
+                        </p>
+                        <p class="name">芒种</p>
+                        <p class="singer">音阙诗听 / 赵方婧</p>
+                        <p class="time">3:36</p>
+                    </li>
+                    <li>
+                        <p class="index">06</p>
+                        <p class="operation">
+                            <i class="iconfont icon-xihuan"></i>
+                            <i class="iconfont icon-xiazai1"></i>
+                        </p>
+                        <p class="name">望</p>
+                        <p class="singer">小时姑娘</p>
+                        <p class="time">3:55</p>
+                    </li>
+                </ul>
+            </section>
+        </article>
+        <hr>
+
+        <!-- 底部 -->
+        <section class="bottom">
+            <div class="info">
+                <img src="./img/cover.jpg" alt="">
+                <div>
+                    <p>
+                        <span>起风了</span>
+                        <i class="iconfont icon-xihuan"></i>
+                    </p>
+                    <p>买辣椒也用券</p>
+                </div>
+            </div>
+            <div class="progress">
+                <p>
+                    <span class="mode">
+                        <i class="iconfont icon-liebiaoxunhuan black"></i>
+                        <i class="iconfont icon-danquxunhuan black"></i>
+                        <i class="iconfont icon-suijibofang black"></i>
+                        <i class="iconfont icon-bofangliebiao black"></i>
+                    </span>
+                    <span class="last">
+                        <i class="iconfont icon-shangyiqu black"></i>
+                    </span>
+                    <span class="play">
+                        <i class="iconfont icon-bofang black"></i>
+                    </span>
+                    <span class="next">
+                        <i class="iconfont icon-xiayiqu black"></i>
+                    </span>
+                    <span class="lyric black">
+                        词
+                    </span>
+                </p>
+                <div class="time">
+                    <span>0:00</span>
+                    <div class="track"></div>
+                    <span>5:56</span>
+                </div>
+            </div>
+            <div class="options">
+                <div class="voice">
+                    <i class="iconfont icon-yinliang"></i>
+                    <p class="track"></p>
+                </div>
+                <i class="iconfont icon-bofangduilie"></i>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

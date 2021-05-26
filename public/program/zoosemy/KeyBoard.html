@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 100vh;
+            background: #EBECF0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        textarea {
+            width: 900px;
+            resize: none;
+            background: linear-gradient( 145deg, #F2F7FB, #E9F2FB);
+            box-shadow: inset 8px 8px 15px #d9e3ec;
+            border-radius: 12px;
+            border: none;
+            overflow: auto;
+            padding: 20px;
+            outline: none;
+            margin: 50px 0;
+        }
+
+        div.key-board {
+            padding: 25px;
+            background: linear-gradient( 145deg, #F2F7FB, #E9F2FB);
+            box-shadow: 8px 8px 15px #d9e3ec;
+            border-radius: 12px;
+            min-width: 750px;
+            max-width: 1000px;
+        }
+
+        div.key-board div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div.key-board div span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            margin: 10px;
+            min-width: 40px;
+            height: 40px;
+            border-radius: 15px;
+            background: linear-gradient(145deg, #F2F7FB, #E9F2FB);
+            box-shadow: 5px 5px 15px #d9e3ec;
+            color: #1E71F5;
+            transition: .2s;
+        }
+
+        div.key-board div span.space {
+            width: 500px;
+        }
+
+        div.key-board div span.keydown {
+            color: linear-gradient(45deg, #1E71F5, #3CDEE7);
+            background: linear-gradient(145deg, #E9F2FB, #F2F7FB);
+            box-shadow: inset 5px 5px 5px #d9e3ec;
+        }
+    </style>
+</head>
+<body>
+    <textarea name="" id="" cols="30" rows="10" placeholder="Type your worlds"></textarea>
+    <div class="key-board">
+        <div class="key-board-row">
+            <span>Q</span>
+            <span>W</span>
+            <span>E</span>
+            <span>R</span>
+            <span>T</span>
+            <span>Y</span>
+            <span>U</span>
+            <span>I</span>
+            <span>O</span>
+            <span>P</span>
+        </div>
+        <div class="key-board-row">
+            <span>A</span>
+            <span>S</span>
+            <span>D</span>
+            <span>F</span>
+            <span>G</span>
+            <span>H</span>
+            <span>J</span>
+            <span>K</span>
+            <span>L</span>
+        </div>
+        <div class="key-board-row">
+            <span>Z</span>
+            <span>X</span>
+            <span>C</span>
+            <span>V</span>
+            <span>B</span>
+            <span>N</span>
+            <span>M</span>
+        </div>
+        <div>
+            <span class="space">Space</span>
+        </div>
+    </div>
+
+    <script>
+        let Keys = document.querySelectorAll('span')
+        document.addEventListener('keydown', e => {
+            Keys.forEach(item => {
+                if ( e.keyCode == 32 && item.innerHTML == 'Space' ) {
+                    item.classList.add('keydown')
+                } else if ( e.key.toUpperCase() == item.innerHTML ) {
+                    item.classList.add('keydown')
+                }
+            })
+        })
+
+        document.addEventListener('keyup', e => {
+            Keys.forEach(item => {
+                if ( e.keyCode == 32 && item.innerHTML == 'Space' ) {
+                    item.classList.remove('keydown')
+                } else if ( e.key.toUpperCase() == item.innerHTML ) {
+                    item.classList.remove('keydown')
+                }
+            })
+        })
+    </script>
+</body>
+</html>

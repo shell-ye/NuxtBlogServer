@@ -1,0 +1,502 @@
+@font-face {
+    font-family: PingFangSC;
+    src: url(./font/PingFang-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+.black:hover {
+    color: black;
+    transition: .2s;
+}
+
+* {
+    font-family: PingFangSC;
+    font-size: 16px;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+i.icon-cpxihuan {
+    color: red;
+}
+
+i.icon-bofangduilie {
+    color: rgb(255, 71, 71);
+}
+
+i.icon-xiazai1 {
+    color: rgb(166, 114, 238);
+}
+
+i.icon-shoucangxing2 {
+    color: rgb(153, 213, 35);
+}
+
+i.icon-tinggeshiqu {
+    color: rgb(210, 255, 120);
+}
+
+.scrollbar::-webkit-scrollbar {
+    width : 4px;
+    height: 4px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background-color: #ccc;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 98vh;
+    color: rgb(251, 217, 217);
+}
+
+video {
+    position: fixed;
+    width: 100vw;
+    left: 0;
+    top: 0;
+}
+
+main {
+    width: 1022px;
+    height: 670px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgb(126 130 197 / 72%);
+    z-index: 99;
+    backdrop-filter: saturate(100%) blur(20px);
+    /* backdrop-filter: saturate(180%) blur(20px); */
+}
+
+/* 头部 */
+main section.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    color: white;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+main section.head .title {
+    font-size: 24px;
+    width: 160px;
+}
+
+main section.head div.bar {
+    width: calc( 100% - 160px );
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main section.head div.bar input {
+    height: 28px;
+    border-radius: 14px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    padding: 0 16px;
+    background: transparent;
+    box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
+    font-size: 14px;
+    margin-right: 40px;
+    margin-left: 10px;
+}
+
+main section.head div.bar img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transform: translateY(10px);
+}
+
+main section.head div.bar span.username {
+    margin-left: 4px;
+    margin-right: 40px;
+}
+
+main section.head div.bar i {
+    margin-left: 10px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+main section.head div.bar .icon-search {
+    margin-left: -64px;
+    transform: translateY(2px);
+    display: inline-block;
+}
+
+main section.head div.bar .icon-guanbi {
+    display: inline-block;
+    font-size: 22px;
+    transform: translateY(2px);
+}
+
+/* 导航线条 */
+main hr {
+    width: 96%;
+    margin-left: 2%;
+    height: 2px;
+    border-radius: 1px;
+    box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
+    border: none;
+    margin: 4px auto;
+}
+
+/* 主内容 */
+main article.content {
+    height: 516px;
+    box-sizing: border-box;
+    padding: 0 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+
+main article.content > * {
+    height: 100%;
+}
+
+main article.content aside {
+    width: 160px;
+    border-right: 1px solid #ccc;
+}
+
+main article.content aside p.title {
+    font-size: 14px;
+    color: #eee;
+    line-height: 40px;
+}
+
+main article.content aside ul li {
+    line-height: 40px;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding-left: 20px;
+}
+
+main article.content aside ul li i {
+    margin-right: 4px;
+}
+
+main article.content aside ul li:hover, main article.content aside ul li.select {
+    background: rgba(246, 246, 247, .2);
+}
+
+main article.content section.content {
+    overflow: auto;
+}
+
+main article.content section.content div.info {
+    box-sizing: border-box;
+    padding: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+main article.content section.content div.info img {
+    width: 184px;
+    height: 184px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+main article.content section.content div.info div.text > * {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+main article.content section.content div.info div.text div.title span.type {
+    color: rgb(255, 49, 49);
+    padding: 0px 6px;
+    border-radius: 4px;
+    border: 1px solid rgb(255, 49, 49);
+    font-size: 14px;
+}
+
+main article.content section.content div.info div.text div.title span.name {
+    font-weight: bold;
+    font-size: 24px;
+    margin: 0 10px;
+}
+
+main article.content section.content div.info div.text div.title i {
+    font-size: 18px;
+    color: yellowgreen;
+}
+
+main article.content section.content div.info div.text div.author img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+main article.content section.content div.info div.text div.author span.username {
+    margin: 0 10px;
+}
+
+main article.content section.content div.info div.text div.operation {
+    margin-bottom: 30px;
+}
+
+main article.content section.content div.info div.text div.operation p {
+    height: 32px;
+    line-height: 32px;
+    border: 1px solid #999;
+    border-radius: 16px;
+    padding: 0 8px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    align-items: center;
+}
+
+main article.content section.content div.info div.text div.operation p span {
+    font-size: 14px;
+}
+
+main article.content section.content div.info div.text div.operation p i:first-child {
+    font-size: 20px;
+    margin-right: 6px;
+    color: white;
+}
+
+main article.content section.content div.info div.text div.operation p i.icon-xiazai1 {
+    font-size: 18px;
+}
+
+main article.content section.content div.info div.text div.operation p:first-child {
+    background: red;
+    border-color: red;
+}
+
+main article.content section.content div.info div.text div.operation p:first-child span {
+    border-right: 1px solid white;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    padding-right: 4px;
+    margin-right: 6px;
+}
+
+main article.content section.content div.info div.text div.count span {
+    margin-right: 20px;
+}
+
+main article.content section.content div.list-type {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 30px;
+    margin-bottom: 20px;
+}
+
+main article.content section.content div.list-type p.list span {
+    margin: 0 10px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+main article.content section.content div.list-type p.list span:hover {
+    color: red;
+}
+
+main article.content section.content div.list-type p.list span.select {
+    color: red;
+    border-bottom: 2px solid red;
+    font-weight: bold;
+}
+
+main article.content section.content div.list-type p.search {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+main article.content section.content div.list-type p.search input {
+    height: 28px;
+    border-radius: 14px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    padding: 0 16px;
+    background: transparent;
+    box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
+    font-size: 14px;
+}
+
+main article.content section.content div.list-type p.search i {
+    position: absolute;
+    right: 8px;
+    top: 6px;
+}
+
+main article.content section.content ul li {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 30px;
+    line-height: 30px;
+    box-sizing: border-box;
+    padding: 0 40px;
+    transition: .2s;
+}
+
+main article.content section.content ul li p.index{ 
+    width: 10%; 
+}
+
+main article.content section.content ul li p.operation{ 
+    width: 10%; 
+}
+
+main article.content section.content ul li p.name{ 
+    width: 40%; 
+}
+
+main article.content section.content ul li p.singer{ 
+    width: 30%; 
+}
+
+main article.content section.content ul li p.time{ 
+    width: 10%; 
+    text-align: right;
+}
+
+main article.content section.content ul li:hover {
+    background: rgba(246, 246, 247, .2);
+}
+
+
+/* 底部 */
+main section.bottom {
+    height: 74px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+main section.bottom > * {
+    height: 100%;
+    width: 216px;
+}
+
+main section.bottom .info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+main section.bottom .info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    margin-right: 14px;
+}
+
+main section.bottom .info div p:nth-child(2) {
+    font-size: 14px;
+}
+
+main section.bottom .progress {
+    width: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;    
+    margin-top: -10px;
+}
+
+main section.bottom .progress p span {
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+main section.bottom .progress p span i {
+    font-size: 20px;
+}
+
+main section.bottom .progress p span.mode i.icon-danquxunhuan,
+main section.bottom .progress p span.mode i.icon-suijibofang,
+main section.bottom .progress p span.mode i.icon-bofangliebiao {
+    display: none;
+}
+
+main section.bottom .progress p span.play i {
+    font-size: 42px;
+    transform: translateY(4px);
+    display: inline-block;
+}
+
+main section.bottom .progress p span.lyric {
+    font-size: 16px;
+    display: inline-block;
+    transform: translateY(-2px);
+}
+
+main section.bottom .progress div.time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main section.bottom .progress div.time span {
+    font-size: 14px;
+}
+
+main section.bottom .progress div.time div.track {
+    height: 2px;
+    width: 350px;
+    margin: 0 16px;
+    background: white;
+    border-radius: 1px;
+}
+
+main section.bottom div.options {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+main section.bottom div.options i, main section.bottom div.options div.voice i {
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+}
+
+main section.bottom div.options div.voice {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 20px;
+}
+
+main section.bottom div.options div.voice p.track {
+    width: 100px;
+    height: 2px;
+    margin: 0 10px;
+    background: white;
+    border-radius: 1px;
+}
